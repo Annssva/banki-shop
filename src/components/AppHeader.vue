@@ -33,6 +33,8 @@
 import navigation from '@/data/navigation'
 
 export default {
+  name: 'AppHeader',
+
   data() {
     return {
       windowWidth: window.innerWidth,
@@ -42,9 +44,9 @@ export default {
 
   computed: {
     searchPlaceholder() {
-      return this.windowWidth < 1024
-        ? 'Поиск'
-        : 'Поиск по названию картины'
+      return this.windowWidth >= 1024
+        ? 'Поиск по названию картины'
+        : 'Поиск'
     }
   },
 
@@ -68,8 +70,8 @@ export default {
 .header {
   width: 100%;
   height: 97px;
+
   border-bottom: 1px solid $border-color;
-  gap: 24px;
 
   &__container {
     display: flex;
@@ -82,6 +84,7 @@ export default {
   &__nav {
     display: flex;
     align-items: center;
+
     gap: 48px;
   }
 
@@ -95,10 +98,9 @@ export default {
     vertical-align: middle;
 
     text-decoration: none;
+    white-space: nowrap;
 
     transition: color $transition;
-
-    white-space: nowrap;
 
     &:hover {
       color: $hover-color;
@@ -108,30 +110,31 @@ export default {
 
   &__search {
     display: flex;
-    align-items: stretch;
+
     height: 48px;
   }
 
   &__input {
     width: 294px;
-    height: 100%;
 
     padding: 0 16px;
-    
+
     border: 1px solid $border-color;
     border-right: none;
 
     background: transparent;
 
+    color: $text-color;
+
     font-family: inherit;
     font-size: 14px;
-    color: $text-color;
     font-weight: 400;
     line-height: 150%;
     letter-spacing: 0%;
     vertical-align: middle;
     transition: all $transition;
 
+    transition: border-color $transition;
 
     &::placeholder {
       color: #9F9F9F;
@@ -145,7 +148,6 @@ export default {
 
   &__button {
     width: 122px;
-    height: 100%;
 
     background: $accent-color;
 
@@ -157,7 +159,6 @@ export default {
     line-height: 150%;
     letter-spacing: 0%;
     vertical-align: middle;
-
 
     cursor: pointer;
 
@@ -181,9 +182,9 @@ export default {
       gap: 24px;
     }
 
-     &__search {
+    &__search {
       height: 40px;
-     }
+    }
 
     &__input {
       width: 220px;
@@ -198,13 +199,16 @@ export default {
     &__container {
       flex-wrap: wrap;
       align-items: stretch;
+
       gap: 20px;
+
       padding-top: 20px;
       padding-bottom: 20px;
     }
 
     &__nav {
       overflow-x: auto;
+
       gap: 24px;
     }
 
@@ -214,6 +218,7 @@ export default {
 
     &__input {
       flex: 1;
+
       width: auto;
     }
   }
@@ -221,14 +226,16 @@ export default {
 
 @media (max-width: 485px) {
   .header {
-    &__nav {
-      flex-wrap: wrap;
-      gap: 8px 16px;
+    &__container {
+      gap: 16px;
+
+      padding: 16px;
     }
 
-    &__container {
-      padding: 16px;
-      gap: 16px;
+    &__nav {
+      flex-wrap: wrap;
+
+      gap: 8px 16px;
     }
   }
 }
@@ -237,10 +244,6 @@ export default {
   .header {
     &__button {
       width: 100px;
-    }
-
-    &__link {
-      white-space: nowrap;
     }
   }
 }
