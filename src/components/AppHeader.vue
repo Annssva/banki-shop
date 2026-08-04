@@ -3,11 +3,14 @@
     <div class="container header__container">
 
       <nav class="header__nav">
-        <a href="#" class="header__link">Каталог</a>
-        <a href="#" class="header__link">Доставка</a>
-        <a href="#" class="header__link">Оплата</a>
-        <a href="#" class="header__link">Контакты</a>
-        <a href="#" class="header__link">О компании</a>
+        <a
+          v-for="item in navigation"
+          :key="item.id"
+          :href="item.href"
+          class="header__link"
+        >
+          {{ item.title }}
+        </a>
       </nav>
 
       <div class="header__search">
@@ -27,10 +30,13 @@
 </template>
 
 <script>
+import navigation from '@/data/navigation'
+
 export default {
   data() {
     return {
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      navigation
     }
   },
 
@@ -190,7 +196,7 @@ export default {
     height: max-content;
 
     &__container {
-      flex-direction: column;
+      flex-wrap: wrap;
       align-items: stretch;
       gap: 20px;
       padding-top: 20px;
