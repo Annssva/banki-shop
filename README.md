@@ -1,24 +1,35 @@
-# banki-shop
+# Banki.shop
 
-## Project setup
-```
+Тестовое задание по верстке страницы интернет-магазина.
+
+## Стек
+
+* Vue 2 (Options API)
+* JavaScript
+* Webpack
+* SCSS
+
+## Установка
+
+Установить зависимости:
+
+```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+## Запуск проекта
+
+Запуск режима разработки:
+
+```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
+## Сборка проекта
+
+Production-сборка:
+
+```bash
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
