@@ -2,13 +2,26 @@
 @import './reset';
 @import './typography';
 
+html,
 body {
-  background-color: $background-color;
-  font-family: Merriweather, serif;
+  height: 100%;
 }
 
-#app {
+body {
+  margin: 0;
+  background: $background-color;
+  font-family: 'Merriweather', serif;
+}
+
+.app {
   min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
 }
 
 .container {
