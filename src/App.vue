@@ -1,6 +1,9 @@
 <template>
-  <div id="app">
-    Banki.shop
+  <div class="app">
+    <!-- header -->
+    <div class="container">
+    </div>
+    <!-- footer -->
   </div>
 </template>
 
