@@ -1,6 +1,5 @@
 @import './fonts';
 @import './reset';
-@import './variables';
 @import './typography';
 
 body {
@@ -10,4 +9,18 @@ body {
 
 #app {
   min-height: 100vh;
+}
+
+.container {
+  max-width: 1216px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (max-width: 485px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
