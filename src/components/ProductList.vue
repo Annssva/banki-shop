@@ -4,18 +4,21 @@
       Картины эпохи Возрождения
     </h1>
 
-    <div class="products__list">
+    <transition-group
+        name="products"
+        tag="div"
+        class="products__list"
+    >
       <ProductCard
         v-for="product in products"
         :key="product.id"
         :product="product"
       />
-    </div>
+    </transition-group>
   </section>
 </template>
 
 <script>
-import products from '@/data/products'
 import ProductCard from './ProductCard.vue'
 
 export default {
@@ -25,9 +28,10 @@ export default {
     ProductCard
   },
 
-  data() {
-    return {
-      products
+  props: {
+    products: {
+      type: Array,
+      required: true
     }
   }
 }
@@ -48,12 +52,13 @@ export default {
   }
 
   &__list {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
 
     gap: 32px;
 
-    overflow-x: auto;
+    overflow: hidden;
   }
 }
 
@@ -69,5 +74,31 @@ export default {
       gap: 24px;
     }
   }
+}
+
+.products-enter-active,
+.products-leave-active {
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.products-move {
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.products-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.products-leave-to {
+  opacity: 0;
+  transform: scale(.96);
+}
+
+.products-leave-active {
+  position: absolute;
+  pointer-events: none;
 }
 </style>

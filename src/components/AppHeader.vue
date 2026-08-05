@@ -17,7 +17,9 @@
         <input
           class="header__input"
           type="text"
+          :value="searchQuery"
           :placeholder="searchPlaceholder"
+          @input="handleInput"
         />
 
         <button class="header__button">
@@ -34,6 +36,13 @@ import navigation from '@/data/navigation'
 
 export default {
   name: 'AppHeader',
+
+  props: {
+    searchQuery: {
+      type: String,
+      default: ''
+    }
+  },
 
   data() {
     return {
@@ -61,6 +70,10 @@ export default {
   methods: {
     handleResize() {
       this.windowWidth = window.innerWidth
+    },
+
+    handleInput(event) {
+      this.$emit('search', event.target.value)
     }
   }
 }
