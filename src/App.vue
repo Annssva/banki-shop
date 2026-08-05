@@ -35,8 +35,13 @@ export default {
   data() {
     return {
       products,
-      searchQuery: ''
+      searchQuery: '',
+      storageKey: 'banki-shop-cart'
     }
+  },
+
+  created() {
+    this.loadPurchasedProducts()
   },
 
   computed: {
@@ -71,7 +76,36 @@ export default {
 
       setTimeout(() => {
         product.purchaseState = 'cart'
+
+        this.savePurchasedProducts()
       }, 2000)
+    },
+
+    loadPurchasedProducts() {
+      const savedProducts = JSON.parse(
+        localStorage.getItem(this.storageKey)
+      )
+
+      if (!savedProducts) {
+        return
+      }
+
+      this.products.forEach(product => {
+        if (savedProducts.includes(product.id)) {
+          product.purchaseState = 'cart'
+        }
+      })
+    },
+
+    savePurchasedProducts() {
+      const purchasedProducts = this.products
+        .filter(product => product.purchaseState === 'cart')
+        .map(product => product.id)
+
+      localStorage.setItem(
+        this.storageKey,
+        JSON.stringify(purchasedProducts)
+      )
     }
   }
 }
