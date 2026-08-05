@@ -70,6 +70,8 @@ export default {
   }
 
   &__link {
+    position: relative;
+    
     color: $text-color;
 
     font-size: 14px;
@@ -82,9 +84,30 @@ export default {
 
     transition: color $transition;
 
+    &::after {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      bottom: -0;
+
+      width: 100%;
+      height: 1px;
+
+      background: currentColor;
+
+      transform: scaleX(0);
+      transform-origin: left;
+
+      transition: transform $transition;
+    }
+
     &:hover {
       color: $hover-color;
-      text-decoration: underline;
+
+      &::after {
+        transform: scaleX(1);
+      }
     }
   }
 

@@ -148,7 +148,7 @@ export default {
     transition: color $transition;
 
     &:hover {
-      color: #191717;
+      color: $hover-color;
     }
   }
 
