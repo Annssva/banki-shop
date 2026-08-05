@@ -81,7 +81,6 @@ export default {
     gap: 67px;
     min-height: 100%;
     height: 100%;
-    padding-bottom: 4px;
   }
 
   &__nav {
@@ -145,7 +144,7 @@ export default {
 
     &:focus {
       outline: none;
-      border-color: $accent-color;
+      border-color: #B5B5B5;
     }
   }
 

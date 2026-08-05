@@ -260,8 +260,8 @@ export default {
   }
 
   &__button-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 
     flex-shrink: 0;
   }

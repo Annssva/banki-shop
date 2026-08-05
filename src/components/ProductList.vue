@@ -35,10 +35,10 @@ export default {
 
 <style lang="scss">
 .products {
-  padding-top: 45px;
+  padding-top: 47px;
 
   &__title {
-    margin: 0 0 37px;
+    margin: 0 0 38px;
 
     color: $text-color;
 
