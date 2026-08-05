@@ -14,6 +14,7 @@
         :key="product.id"
         :product="product"
         @buy="$emit('buy', $event)"
+        @open="$emit('open', $event)"
       />
     </transition-group>
   </section>

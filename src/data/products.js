@@ -6,9 +6,11 @@ export default [
     category: 'Картины эпохи Возрождения',
     oldPrice: 2000000,
     price: 1000000,
-    description: 'Картина эпохи Возрождения.',
+    description: 'Одна из самых известных картин эпохи Возрождения, созданная итальянским художником Сандро Боттичелли. Полотно изображает рождение богини Венеры из морской пены и является символом красоты, гармонии и идеалов античности.',
     images: [
-      '/images/venus.jpg'
+      '/images/venus.jpg',
+      '/images/secret.jpg',
+      '/images/adam.jpg'
     ],
     status: 'available',
     purchaseState: 'idle'
@@ -19,9 +21,11 @@ export default [
     author: 'Леонардо да Винчи',
     category: 'Картины эпохи Возрождения',
     price: 3000000,
-    description: 'Знаменитая фреска Леонардо да Винчи.',
+    description: 'Знаменитая фреска Леонардо да Винчи, изображающая последний ужин Иисуса Христа с учениками. Работа считается одним из величайших произведений мирового искусства и выдающимся примером художественного мастерства эпохи Возрождения.',
     images: [
-      '/images/secret.jpg'
+      '/images/secret.jpg',
+      '/images/venus.jpg',
+      '/images/adam.jpg'
     ],
     status: 'available',
     purchaseState: 'idle'
@@ -33,9 +37,11 @@ export default [
     category: 'Картины эпохи Возрождения',
     oldPrice: 6000000,
     price: 5000000,
-    description: 'Фрагмент росписи потолка Сикстинской капеллы.',
+    description: 'Фрагмент знаменитой росписи потолка Сикстинской капеллы в Ватикане. Работа Микеланджело изображает момент создания первого человека и является одним из самых узнаваемых произведений искусства в истории.',
     images: [
-      '/images/adam.jpg'
+      '/images/adam.jpg',
+      '/images/venus.jpg',
+      '/images/secret.jpg'
     ],
     status: 'available',
     purchaseState: 'idle'
@@ -46,9 +52,11 @@ export default [
     author: 'Рембрандт',
     category: 'Картины эпохи Возрождения',
     price: 1000000,
-    description: 'Картина голландского художника Рембрандта.',
+    description: 'Картина голландского художника Рембрандта, изображающая публичный урок анатомии доктора Тульпа. Произведение отличается реалистичной передачей эмоций персонажей и считается одним из ключевых полотен художника.',
     images: [
-      '/images/anatomy.jpg'
+      '/images/anatomy.jpg',
+      '/images/adam.jpg',
+      '/images/venus.jpg'
     ],
     status: 'sold',
     purchaseState: 'idle'

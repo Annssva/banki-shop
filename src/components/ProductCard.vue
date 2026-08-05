@@ -8,11 +8,15 @@
       :src="product.images[0]"
       :alt="product.title"
       class="card__image"
+      @click="$emit('open', product)"
     />
 
     <div class="card__content">
 
-      <h2 class="card__title">
+    <h2
+        class="card__title"
+        @click="$emit('open', product)"
+    >
         {{ product.title }}
         <br>
         {{ product.author }}
@@ -142,6 +146,12 @@ export default {
     display: block;
 
     object-fit: cover;
+    cursor: pointer;
+    transition: transform $transition;
+
+    &:hover {
+        transform: scale(1.02);
+    }
   }
 
 
@@ -165,6 +175,14 @@ export default {
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
+    cursor: pointer;
+
+    transition: color $transition;
+
+    &:hover {
+        color: #191717;
+
+    }
   }
 
 

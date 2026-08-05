@@ -9,6 +9,13 @@
       <ProductList
         :products="filteredProducts"
         @buy="buyProduct"
+        @open="openProduct"
+      />
+
+      <ProductModal
+        v-if="selectedProduct"
+        :product="selectedProduct"
+        @close="selectedProduct = null"
       />
     </main>
 
@@ -22,6 +29,7 @@ import products from '@/data/products'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
 import ProductList from './components/ProductList.vue'
+import ProductModal from './components/ProductModal.vue'
 
 export default {
   name: 'App',
@@ -29,14 +37,16 @@ export default {
   components: {
     AppHeader,
     AppFooter,
-    ProductList
+    ProductList,
+    ProductModal
   },
 
   data() {
     return {
       products,
       searchQuery: '',
-      storageKey: 'banki-shop-cart'
+      storageKey: 'banki-shop-cart',
+      selectedProduct: null
     }
   },
 
@@ -106,6 +116,9 @@ export default {
         this.storageKey,
         JSON.stringify(purchasedProducts)
       )
+    },
+    openProduct(product) {
+      this.selectedProduct = product
     }
   }
 }
