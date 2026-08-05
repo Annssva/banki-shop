@@ -1,97 +1,47 @@
 <template>
-  <transition
-    name="modal"
-    appear
-  >
-    <div
-      v-if="product"
-      class="modal"
-      @click.self="$emit('close')"
-    >
-
+  <transition name="modal" appear>
+    <div v-if="product" class="modal" @click.self="$emit('close')">
       <div class="modal__window">
-
-        <button
-          class="modal__close"
-          @click="$emit('close')"
-        >
-          ×
-        </button>
-
+        <button class="modal__close" @click="$emit('close')">×</button>
 
         <div class="modal__slider">
-
           <transition :name="slideDirection">
             <img
-                :key="currentImage"
-                :src="currentImage"
-                :alt="product.title"
-                class="modal__image"
+              :key="currentImage"
+              :src="currentImage"
+              :alt="product.title"
+              class="modal__image"
             />
           </transition>
 
+          <div v-if="product.images.length > 1" class="modal__controls">
+            <button class="modal__arrow" @click="prevImage">←</button>
 
-          <div
-            v-if="product.images.length > 1"
-            class="modal__controls"
-          >
-
-            <button
-              class="modal__arrow"
-              @click="prevImage"
-            >
-              ←
-            </button>
-
-            <button
-              class="modal__arrow"
-              @click="nextImage"
-            >
-              →
-            </button>
-
+            <button class="modal__arrow" @click="nextImage">→</button>
           </div>
-
         </div>
 
-
         <div class="modal__content">
-
           <h2 class="modal__title">
             {{ product.title }}
-            <br>
+            <br />
             {{ product.author }}
           </h2>
-
 
           <p class="modal__description">
             {{ product.description }}
           </p>
 
-
-          <div
-            v-if="product.status !== 'sold'"
-            class="modal__price"
-          >
+          <div v-if="product.status !== 'sold'" class="modal__price">
             {{ formatPrice(product.price) }} $
           </div>
 
-
-          <div
-            v-else
-            class="modal__sold"
-          >
-            Продана на аукционе
-          </div>
-
+          <div v-else class="modal__sold">Продана на аукционе</div>
         </div>
-
       </div>
-
     </div>
   </transition>
 </template>
-
 
 <script>
 export default {
@@ -117,15 +67,13 @@ export default {
     }
   },
 
-    watch: {
+  watch: {
     product(value) {
-        this.currentIndex = 0
+      this.currentIndex = 0
 
-        document.body.style.overflow = value
-        ? 'hidden'
-        : ''
+      document.body.style.overflow = value ? 'hidden' : ''
     }
-    },
+  },
 
   mounted() {
     window.addEventListener('keydown', this.handleKeydown)
@@ -138,42 +86,39 @@ export default {
 
   methods: {
     nextImage() {
-        this.slideDirection = 'slide-next'
+      this.slideDirection = 'slide-next'
 
-        if (this.currentIndex < this.product.images.length - 1) {
-            this.currentIndex++
-        } else {
-            this.currentIndex = 0
-        }
+      if (this.currentIndex < this.product.images.length - 1) {
+        this.currentIndex++
+      } else {
+        this.currentIndex = 0
+      }
     },
 
-
     prevImage() {
-        this.slideDirection = 'slide-prev'
+      this.slideDirection = 'slide-prev'
 
-        if (this.currentIndex > 0) {
-            this.currentIndex--
-        } else {
-            this.currentIndex = this.product.images.length - 1
-        }
+      if (this.currentIndex > 0) {
+        this.currentIndex--
+      } else {
+        this.currentIndex = this.product.images.length - 1
+      }
     },
 
     formatPrice(value) {
       return value.toLocaleString('ru-RU')
     },
 
-      handleKeydown(event) {
-        if (event.key === 'Escape') {
-            this.$emit('close')
-        }
+    handleKeydown(event) {
+      if (event.key === 'Escape') {
+        this.$emit('close')
       }
+    }
   }
 }
 </script>
 
-
 <style lang="scss">
-
 .modal {
   position: fixed;
   inset: 0;
@@ -186,8 +131,7 @@ export default {
 
   padding: 20px;
 
-  background: rgba(0,0,0,.45);
-
+  background: rgba(0, 0, 0, 0.45);
 
   &__window {
     position: relative;
@@ -201,7 +145,6 @@ export default {
 
     background: $background-color;
   }
-
 
   &__close {
     position: absolute;
@@ -225,17 +168,15 @@ export default {
     cursor: pointer;
   }
 
-
-    &__slider {
+  &__slider {
     position: relative;
 
     width: 100%;
 
     overflow: hidden;
-    }
+  }
 
-
-    &__image {
+  &__image {
     width: 100%;
     height: auto;
 
@@ -246,8 +187,7 @@ export default {
     background: #fff;
 
     position: relative;
-    }
-
+  }
 
   &__controls {
     position: absolute;
@@ -263,7 +203,6 @@ export default {
     gap: 12px;
   }
 
-
   &__arrow {
     width: 36px;
     height: 36px;
@@ -278,17 +217,14 @@ export default {
 
     transition: background $transition;
 
-
     &:hover {
       background: $hover-color;
     }
   }
 
-
   &__content {
     padding: 32px;
   }
-
 
   &__title {
     margin: 0 0 24px;
@@ -302,7 +238,6 @@ export default {
     line-height: 150%;
   }
 
-
   &__description {
     margin: 0 0 24px;
 
@@ -313,7 +248,6 @@ export default {
     line-height: 150%;
   }
 
-
   &__price {
     color: $text-color;
 
@@ -321,7 +255,6 @@ export default {
 
     font-weight: 700;
   }
-
 
   &__sold {
     color: $text-color;
@@ -332,41 +265,35 @@ export default {
   }
 }
 
-
 /* открытие / закрытие */
 
 .modal-enter-active,
 .modal-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
-
 
 .modal-enter-active .modal__window,
 .modal-leave-active .modal__window {
   transition:
-    transform .35s cubic-bezier(.22,1,.36,1),
-    opacity .35s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
 }
-
 
 .modal-enter,
 .modal-leave-to {
   opacity: 0;
 }
 
-
 .modal-enter .modal__window,
 .modal-leave-to .modal__window {
   opacity: 0;
-  transform: translateY(25px) scale(.97);
+  transform: translateY(25px) scale(0.97);
 }
-
 
 .modal-enter-to .modal__window {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
 
 /* смена картинок */
 
@@ -375,10 +302,9 @@ export default {
 .slide-prev-enter-active,
 .slide-prev-leave-active {
   transition:
-    transform .35s cubic-bezier(.22, 1, .36, 1),
-    opacity .35s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
 }
-
 
 /* вперед → новая приходит справа */
 .slide-next-enter {
@@ -395,7 +321,6 @@ export default {
   opacity: 0;
   transform: translateX(-40px);
 }
-
 
 /* назад → новая приходит слева */
 .slide-prev-enter {
@@ -421,25 +346,17 @@ export default {
   grid-area: 1 / 1;
 }
 
-
 @media (max-width: 768px) {
-
   .modal {
-
     padding: 16px;
-
 
     &__content {
       padding: 24px;
     }
 
-
     &__title {
       font-size: 20px;
     }
-
   }
-
 }
-
 </style>

@@ -1,14 +1,8 @@
 <template>
   <section class="products">
-    <h1 class="products__title">
-      Картины эпохи Возрождения
-    </h1>
+    <h1 class="products__title">Картины эпохи Возрождения</h1>
 
-    <transition-group
-        name="products"
-        tag="div"
-        class="products__list"
-    >
+    <transition-group name="products" tag="div" class="products__list">
       <ProductCard
         v-for="product in products"
         :key="product.id"
@@ -81,12 +75,12 @@ export default {
 .products-enter-active,
 .products-leave-active {
   transition:
-    opacity .3s ease,
-    transform .3s ease;
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .products-move {
-  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .products-enter {
@@ -96,7 +90,7 @@ export default {
 
 .products-leave-to {
   opacity: 0;
-  transform: scale(.96);
+  transform: scale(0.96);
 }
 
 .products-leave-active {

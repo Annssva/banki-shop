@@ -1,14 +1,8 @@
 <template>
   <header class="header">
     <div class="container header__container">
-
       <nav class="header__nav">
-        <a
-          v-for="item in navigation"
-          :key="item.id"
-          :href="item.href"
-          class="header__link"
-        >
+        <a v-for="item in navigation" :key="item.id" :href="item.href" class="header__link">
           {{ item.title }}
         </a>
       </nav>
@@ -22,11 +16,8 @@
           @input="handleInput"
         />
 
-        <button class="header__button">
-          Найти
-        </button>
+        <button class="header__button">Найти</button>
       </div>
-
     </div>
   </header>
 </template>
@@ -53,9 +44,7 @@ export default {
 
   computed: {
     searchPlaceholder() {
-      return this.windowWidth >= 1024
-        ? 'Поиск по названию картины'
-        : 'Поиск'
+      return this.windowWidth >= 1024 ? 'Поиск по названию картины' : 'Поиск'
     }
   },
 
@@ -151,7 +140,7 @@ export default {
     transition: border-color $transition;
 
     &::placeholder {
-      color: #9F9F9F;
+      color: #9f9f9f;
     }
 
     &:focus {

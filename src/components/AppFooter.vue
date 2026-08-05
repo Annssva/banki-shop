@@ -1,46 +1,25 @@
 <template>
   <footer class="footer">
     <div class="footer__container">
-
       <nav class="footer__nav">
-        <a
-          v-for="item in navigation"
-          :key="item.id"
-          :href="item.href"
-          class="footer__link"
-        >
+        <a v-for="item in navigation" :key="item.id" :href="item.href" class="footer__link">
           {{ item.title }}
         </a>
       </nav>
 
       <div class="footer__contacts">
-
         <a href="tel:+78125555555" class="footer__contact">
-          <img
-            :src="phoneIcon"
-            alt="Телефон"
-            class="footer__icon"
-          />
+          <img :src="phoneIcon" alt="Телефон" class="footer__icon" />
 
-          <span>
-            +7 (812) 555-55-55
-          </span>
+          <span> +7 (812) 555-55-55 </span>
         </a>
 
         <div class="footer__contact">
-          <img
-            :src="locationIcon"
-            alt="Адрес"
-            class="footer__icon"
-          />
+          <img :src="locationIcon" alt="Адрес" class="footer__icon" />
 
-          <span>
-            г. Санкт-Петербург, ул. Ефимова, 3
-          </span>
+          <span> г. Санкт-Петербург, ул. Ефимова, 3 </span>
         </div>
-
       </div>
-
     </div>
   </footer>
 </template>
@@ -68,7 +47,7 @@ export default {
   width: 100%;
   height: 95px;
 
-  background: #ECEAEA;
+  background: #eceaea;
 
   &__container {
     max-width: 1350px;

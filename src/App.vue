@@ -1,16 +1,9 @@
 <template>
   <div class="app">
-    <AppHeader
-      :search-query="searchQuery"
-      @search="handleSearch"
-    />
+    <AppHeader :search-query="searchQuery" @search="handleSearch" />
 
     <main class="main container">
-      <ProductList
-        :products="filteredProducts"
-        @buy="buyProduct"
-        @open="openProduct"
-      />
+      <ProductList :products="filteredProducts" @buy="buyProduct" @open="openProduct" />
 
       <ProductModal
         v-if="selectedProduct"
@@ -50,7 +43,7 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     this.loadPurchasedProducts()
   },
 
@@ -62,7 +55,7 @@ export default {
         return this.products
       }
 
-      return this.products.filter(product => {
+      return this.products.filter((product) => {
         const search = `${product.title} ${product.author}`.toLowerCase()
 
         return search.includes(query)
@@ -76,7 +69,7 @@ export default {
     },
 
     buyProduct(id) {
-      const product = this.products.find(item => item.id === id)
+      const product = this.products.find((item) => item.id === id)
 
       if (!product || product.purchaseState !== 'idle') {
         return
@@ -92,15 +85,13 @@ export default {
     },
 
     loadPurchasedProducts() {
-      const savedProducts = JSON.parse(
-        localStorage.getItem(this.storageKey)
-      )
+      const savedProducts = JSON.parse(localStorage.getItem(this.storageKey))
 
       if (!savedProducts) {
         return
       }
 
-      this.products.forEach(product => {
+      this.products.forEach((product) => {
         if (savedProducts.includes(product.id)) {
           product.purchaseState = 'cart'
         }
@@ -109,13 +100,10 @@ export default {
 
     savePurchasedProducts() {
       const purchasedProducts = this.products
-        .filter(product => product.purchaseState === 'cart')
-        .map(product => product.id)
+        .filter((product) => product.purchaseState === 'cart')
+        .map((product) => product.id)
 
-      localStorage.setItem(
-        this.storageKey,
-        JSON.stringify(purchasedProducts)
-      )
+      localStorage.setItem(this.storageKey, JSON.stringify(purchasedProducts))
     },
     openProduct(product) {
       this.selectedProduct = product
@@ -124,5 +112,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

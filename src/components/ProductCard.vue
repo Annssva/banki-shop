@@ -1,9 +1,5 @@
 <template>
-  <article
-    class="card"
-    :class="{ 'card--sold': product.status === 'sold' }"
-    >
-
+  <article class="card" :class="{ 'card--sold': product.status === 'sold' }">
     <img
       :src="product.images[0]"
       :alt="product.title"
@@ -12,70 +8,47 @@
     />
 
     <div class="card__content">
-
-    <h2
-        class="card__title"
-        @click="$emit('open', product)"
-    >
+      <h2 class="card__title" @click="$emit('open', product)">
         {{ product.title }}
-        <br>
+        <br />
         {{ product.author }}
       </h2>
 
-
-      <div
-        v-if="product.status !== 'sold'"
-        class="card__bottom"
-      >
+      <div v-if="product.status !== 'sold'" class="card__bottom">
         <div class="card__prices">
+          <span v-if="product.oldPrice" class="card__old-price">
+            {{ formatPrice(product.oldPrice) }} $
+          </span>
 
-            <span
-                v-if="product.oldPrice"
-                class="card__old-price"
-            >
-                {{ formatPrice(product.oldPrice) }} $
-            </span>
-
-            <span class="card__price">
-                {{ formatPrice(product.price) }} $
-            </span>
+          <span class="card__price"> {{ formatPrice(product.price) }} $ </span>
         </div>
 
-
         <button
-            class="card__button"
-            :class="{
-                'card__button--processing': product.purchaseState === 'processing',
-                'card__button--cart': product.purchaseState === 'cart'
-            }"
-            :disabled="product.purchaseState !== 'idle'"
-            @click="$emit('buy', product.id)"
+          class="card__button"
+          :class="{
+            'card__button--processing': product.purchaseState === 'processing',
+            'card__button--cart': product.purchaseState === 'cart'
+          }"
+          :disabled="product.purchaseState !== 'idle'"
+          @click="$emit('buy', product.id)"
         >
-            <img
-                v-if="product.purchaseState === 'cart'"
-                :src="checkIcon"
-                alt=""
-                class="card__button-icon"
-            />
+          <img
+            v-if="product.purchaseState === 'cart'"
+            :src="checkIcon"
+            alt=""
+            class="card__button-icon"
+          />
 
-            <span>
-                {{ buttonText }}
-            </span>
+          <span>
+            {{ buttonText }}
+          </span>
         </button>
       </div>
 
-
-        <div
-            v-else
-            class="card__sold"
-        >
-            Продана на аукционе
-        </div>
+      <div v-else class="card__sold">Продана на аукционе</div>
     </div>
-
   </article>
 </template>
-
 
 <script>
 import checkIcon from '@/assets/icons/feather_check.svg'
@@ -92,34 +65,32 @@ export default {
 
   computed: {
     buttonText() {
-        switch (this.product.purchaseState) {
+      switch (this.product.purchaseState) {
         case 'processing':
-            return 'Обрабатывается'
+          return 'Обрабатывается'
 
         case 'cart':
-            return 'В корзине'
+          return 'В корзине'
 
         default:
-            return 'Купить'
-        }
+          return 'Купить'
+      }
     }
   },
 
-    data() {
-        return {
-            checkIcon
-        }
-    },
+  data() {
+    return {
+      checkIcon
+    }
+  },
 
   methods: {
     formatPrice(value) {
-      return value
-        .toLocaleString('ru-RU')
+      return value.toLocaleString('ru-RU')
     }
   }
 }
 </script>
-
 
 <style lang="scss">
 .card {
@@ -128,7 +99,7 @@ export default {
 
   display: flex;
   flex-direction: column;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
 
   flex-shrink: 0;
 
@@ -137,7 +108,6 @@ export default {
   &--sold {
     opacity: 0.5;
   }
-
 
   &__image {
     width: 100%;
@@ -150,22 +120,20 @@ export default {
     transition: transform $transition;
 
     &:hover {
-        transform: scale(1.02);
+      transform: scale(1.02);
     }
   }
 
-
   &__content {
     flex: 1;
-    border-top: 1px solid #E1E1E1;
+    border-top: 1px solid #e1e1e1;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     padding: 20px 23px 22px 23px;
-}
-
+  }
 
   &__title {
     margin: 0;
@@ -180,11 +148,9 @@ export default {
     transition: color $transition;
 
     &:hover {
-        color: #191717;
-
+      color: #191717;
     }
   }
-
 
   &__bottom {
     display: flex;
@@ -196,15 +162,13 @@ export default {
     gap: 8px;
   }
 
-
   &__prices {
     display: flex;
     flex-direction: column;
   }
 
-
   &__old-price {
-    color: #A0A0A0;
+    color: #a0a0a0;
 
     font-size: 14px;
     font-weight: 300;
@@ -215,7 +179,6 @@ export default {
     text-decoration: line-through;
   }
 
-
   &__price {
     color: $text-color;
 
@@ -224,7 +187,6 @@ export default {
     line-height: 150%;
     white-space: nowrap;
   }
-
 
   &__button {
     display: flex;
@@ -251,60 +213,57 @@ export default {
 
     transition: background $transition;
 
-
     &:hover {
       background: $hover-color;
     }
 
-
     &:active {
       background: $activate-color;
 
-        &:hover {
-            background: $activate-color;
-        }
+      &:hover {
+        background: $activate-color;
+      }
     }
-
 
     &:disabled {
       pointer-events: none;
     }
 
     &--processing {
-        font-size: 13px;
-        background: $disabled-color;
+      font-size: 13px;
+      background: $disabled-color;
 
-        &:hover {
-            background: $disabled-color;
-        }
+      &:hover {
+        background: $disabled-color;
+      }
     }
 
     &--cart {
-        background: $activate-color;
+      background: $activate-color;
 
-        &:hover {
-            background: $activate-color;
-        }
+      &:hover {
+        background: $activate-color;
+      }
     }
   }
 
-    &__sold {
-        margin-top: auto;
-        margin-bottom: 12px;
+  &__sold {
+    margin-top: auto;
+    margin-bottom: 12px;
 
-        color: $text-color;
+    color: $text-color;
 
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 150%;
-        vertical-align: middle;
-    }
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+    vertical-align: middle;
+  }
 
-    &__button-icon {
-        width: 16px;
-        height: 16px;
+  &__button-icon {
+    width: 16px;
+    height: 16px;
 
-        flex-shrink: 0;
-    }
+    flex-shrink: 0;
+  }
 }
 </style>
