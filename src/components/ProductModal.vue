@@ -117,37 +117,56 @@ export default {
     }
   },
 
-  watch: {
-    product() {
-      this.currentIndex = 0
+    watch: {
+    product(value) {
+        this.currentIndex = 0
+
+        document.body.style.overflow = value
+        ? 'hidden'
+        : ''
     }
+    },
+
+  mounted() {
+    window.addEventListener('keydown', this.handleKeydown)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('keydown', this.handleKeydown)
+    document.body.style.overflow = ''
   },
 
   methods: {
     nextImage() {
-    this.slideDirection = 'slide-next'
+        this.slideDirection = 'slide-next'
 
-    if (this.currentIndex < this.product.images.length - 1) {
-        this.currentIndex++
-    } else {
-        this.currentIndex = 0
-    }
+        if (this.currentIndex < this.product.images.length - 1) {
+            this.currentIndex++
+        } else {
+            this.currentIndex = 0
+        }
     },
 
 
     prevImage() {
-    this.slideDirection = 'slide-prev'
+        this.slideDirection = 'slide-prev'
 
-    if (this.currentIndex > 0) {
-        this.currentIndex--
-    } else {
-        this.currentIndex = this.product.images.length - 1
-    }
+        if (this.currentIndex > 0) {
+            this.currentIndex--
+        } else {
+            this.currentIndex = this.product.images.length - 1
+        }
     },
 
     formatPrice(value) {
       return value.toLocaleString('ru-RU')
-    }
+    },
+
+      handleKeydown(event) {
+        if (event.key === 'Escape') {
+            this.$emit('close')
+        }
+      }
   }
 }
 </script>
