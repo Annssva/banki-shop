@@ -69,22 +69,24 @@ export default {
 <style lang="scss">
 .header {
   width: 100%;
-  height: 97px;
+  height: 95px;
 
   border-bottom: 1px solid $border-color;
 
   &__container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
+    gap: 67px;
     min-height: 100%;
+    height: 100%;
+    padding-bottom: 4px;
   }
 
   &__nav {
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    width: 100%;
     gap: 48px;
   }
 
@@ -94,8 +96,8 @@ export default {
     font-size: 14px;
     font-weight: 400;
     line-height: 150%;
-    letter-spacing: 0%;
     vertical-align: middle;
+    letter-spacing: 0.7%;
 
     text-decoration: none;
     white-space: nowrap;
@@ -130,7 +132,6 @@ export default {
     font-size: 14px;
     font-weight: 400;
     line-height: 150%;
-    letter-spacing: 0%;
     vertical-align: middle;
     transition: all $transition;
 
@@ -149,7 +150,7 @@ export default {
   &__button {
     width: 122px;
 
-    background: $accent-color;
+    background: #403432;
 
     color: #fff;
 
@@ -157,7 +158,6 @@ export default {
     font-size: 14px;
     font-weight: 700;
     line-height: 150%;
-    letter-spacing: 0%;
     vertical-align: middle;
 
     cursor: pointer;
@@ -177,6 +177,10 @@ export default {
 @media (max-width: 1024px) {
   .header {
     height: 76px;
+
+    &__container {
+      padding: 20px;
+    }
 
     &__nav {
       gap: 24px;
@@ -201,9 +205,6 @@ export default {
       align-items: stretch;
 
       gap: 20px;
-
-      padding-top: 20px;
-      padding-bottom: 20px;
     }
 
     &__nav {

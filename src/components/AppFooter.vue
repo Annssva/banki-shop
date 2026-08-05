@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="container footer__container">
+    <div class="footer__container">
 
       <nav class="footer__nav">
         <a
@@ -66,23 +66,26 @@ export default {
 <style lang="scss">
 .footer {
   width: 100%;
-  height: 96px;
+  height: 95px;
 
   background: #ECEAEA;
 
   &__container {
+    max-width: 1310px;
+    margin: 0 auto;
     height: 100%;
+    padding-left: 16px;
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    gap: 0;
   }
 
   &__nav {
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    width: 100%;
     gap: 48px;
   }
 
@@ -92,6 +95,7 @@ export default {
     font-size: 14px;
     font-weight: 400;
     line-height: 150%;
+    letter-spacing: 0.7%;
 
     text-decoration: none;
     white-space: nowrap;
@@ -144,8 +148,7 @@ export default {
 
       gap: 20px;
 
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding: 20px;
     }
 
     &__nav {
