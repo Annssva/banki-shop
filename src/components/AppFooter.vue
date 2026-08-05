@@ -46,6 +46,7 @@ export default {
 .footer {
   width: 100%;
   height: 95px;
+  margin-top: 20px;
 
   background: #eceaea;
 
@@ -71,7 +72,7 @@ export default {
 
   &__link {
     position: relative;
-    
+
     color: $text-color;
 
     font-size: 14px;
