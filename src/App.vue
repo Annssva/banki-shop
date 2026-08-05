@@ -8,6 +8,7 @@
     <main class="main container">
       <ProductList
         :products="filteredProducts"
+        @buy="buyProduct"
       />
     </main>
 
@@ -57,6 +58,20 @@ export default {
   methods: {
     handleSearch(value) {
       this.searchQuery = value
+    },
+
+    buyProduct(id) {
+      const product = this.products.find(item => item.id === id)
+
+      if (!product || product.purchaseState !== 'idle') {
+        return
+      }
+
+      product.purchaseState = 'processing'
+
+      setTimeout(() => {
+        product.purchaseState = 'cart'
+      }, 2000)
     }
   }
 }

@@ -22,36 +22,51 @@
       <div
         v-if="product.status !== 'sold'"
         class="card__bottom"
-        >
+      >
         <div class="card__prices">
 
             <span
-            v-if="product.oldPrice"
-            class="card__old-price"
+                v-if="product.oldPrice"
+                class="card__old-price"
             >
-            {{ formatPrice(product.oldPrice) }} $
+                {{ formatPrice(product.oldPrice) }} $
             </span>
 
             <span class="card__price">
-            {{ formatPrice(product.price) }} $
+                {{ formatPrice(product.price) }} $
             </span>
-
         </div>
 
 
-        <button class="card__button">
-            Купить
+        <button
+            class="card__button"
+            :class="{
+                'card__button--processing': product.purchaseState === 'processing',
+                'card__button--cart': product.purchaseState === 'cart'
+            }"
+            :disabled="product.purchaseState !== 'idle'"
+            @click="$emit('buy', product.id)"
+        >
+            <img
+                v-if="product.purchaseState === 'cart'"
+                :src="checkIcon"
+                alt=""
+                class="card__button-icon"
+            />
+
+            <span>
+                {{ buttonText }}
+            </span>
         </button>
-        </div>
+      </div>
 
 
         <div
-        v-else
-        class="card__sold"
+            v-else
+            class="card__sold"
         >
-        Продана на аукционе
+            Продана на аукционе
         </div>
-
     </div>
 
   </article>
@@ -59,6 +74,8 @@
 
 
 <script>
+import checkIcon from '@/assets/icons/feather_check.svg'
+
 export default {
   name: 'ProductCard',
 
@@ -68,6 +85,27 @@ export default {
       required: true
     }
   },
+
+  computed: {
+    buttonText() {
+        switch (this.product.purchaseState) {
+        case 'processing':
+            return 'Обрабатывается'
+
+        case 'cart':
+            return 'В корзине'
+
+        default:
+            return 'Купить'
+        }
+    }
+  },
+
+    data() {
+        return {
+            checkIcon
+        }
+    },
 
   methods: {
     formatPrice(value) {
@@ -137,7 +175,7 @@ export default {
 
     margin-top: 20px;
 
-    gap: 20px;
+    gap: 8px;
   }
 
 
@@ -166,11 +204,17 @@ export default {
     font-size: 16px;
     font-weight: 700;
     line-height: 150%;
+    white-space: nowrap;
   }
 
 
   &__button {
-    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: fit-content;
+    min-width: 118px;
     height: 48px;
     padding: 0 8px;
 
@@ -197,13 +241,32 @@ export default {
 
     &:active {
       background: $activate-color;
+
+        &:hover {
+            background: $activate-color;
+        }
     }
 
 
     &:disabled {
-      background: $disabled-color;
+      pointer-events: none;
+    }
 
-      cursor: not-allowed;
+    &--processing {
+        font-size: 13px;
+        background: $disabled-color;
+
+        &:hover {
+            background: $disabled-color;
+        }
+    }
+
+    &--cart {
+        background: $activate-color;
+
+        &:hover {
+            background: $activate-color;
+        }
     }
   }
 
@@ -217,6 +280,13 @@ export default {
         font-weight: 700;
         line-height: 150%;
         vertical-align: middle;
+    }
+
+    &__button-icon {
+        width: 16px;
+        height: 16px;
+
+        flex-shrink: 0;
     }
 }
 </style>

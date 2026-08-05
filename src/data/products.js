@@ -10,7 +10,8 @@ export default [
     images: [
       '/images/venus.jpg'
     ],
-    status: 'available'
+    status: 'available',
+    purchaseState: 'idle'
   },
   {
     id: 2,
@@ -22,7 +23,8 @@ export default [
     images: [
       '/images/secret.jpg'
     ],
-    status: 'available'
+    status: 'available',
+    purchaseState: 'idle'
   },
   {
     id: 3,
@@ -35,7 +37,8 @@ export default [
     images: [
       '/images/adam.jpg'
     ],
-    status: 'available'
+    status: 'available',
+    purchaseState: 'idle'
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ export default [
     images: [
       '/images/anatomy.jpg'
     ],
-    status: 'sold'
+    status: 'sold',
+    purchaseState: 'idle'
   }
 ]

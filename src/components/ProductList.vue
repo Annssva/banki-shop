@@ -13,6 +13,7 @@
         v-for="product in products"
         :key="product.id"
         :product="product"
+        @buy="$emit('buy', $event)"
       />
     </transition-group>
   </section>
