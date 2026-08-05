@@ -5,12 +5,14 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   margin: 0;
   background: $background-color;
   font-family: 'Merriweather', serif;
+  letter-spacing: 0;
 }
 
 .app {
@@ -27,8 +29,6 @@ body {
 .container {
   max-width: 1216px;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 @media (max-width: 485px) {

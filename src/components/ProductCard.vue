@@ -1,0 +1,222 @@
+<template>
+  <article
+    class="card"
+    :class="{ 'card--sold': product.status === 'sold' }"
+    >
+
+    <img
+      :src="product.images[0]"
+      :alt="product.title"
+      class="card__image"
+    />
+
+    <div class="card__content">
+
+      <h2 class="card__title">
+        {{ product.title }}
+        <br>
+        {{ product.author }}
+      </h2>
+
+
+      <div
+        v-if="product.status !== 'sold'"
+        class="card__bottom"
+        >
+        <div class="card__prices">
+
+            <span
+            v-if="product.oldPrice"
+            class="card__old-price"
+            >
+            {{ formatPrice(product.oldPrice) }} $
+            </span>
+
+            <span class="card__price">
+            {{ formatPrice(product.price) }} $
+            </span>
+
+        </div>
+
+
+        <button class="card__button">
+            Купить
+        </button>
+        </div>
+
+
+        <div
+        v-else
+        class="card__sold"
+        >
+        Продана на аукционе
+        </div>
+
+    </div>
+
+  </article>
+</template>
+
+
+<script>
+export default {
+  name: 'ProductCard',
+
+  props: {
+    product: {
+      type: Object,
+      required: true
+    }
+  },
+
+  methods: {
+    formatPrice(value) {
+      return value
+        .toLocaleString('ru-RU')
+    }
+  }
+}
+</script>
+
+
+<style lang="scss">
+.card {
+  width: 280px;
+  height: 328px;
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #E1E1E1;
+
+  flex-shrink: 0;
+
+  background: transparent;
+
+  &--sold {
+    opacity: 0.5;
+  }
+
+
+  &__image {
+    width: 100%;
+    height: 158px;
+
+    display: block;
+
+    object-fit: cover;
+  }
+
+
+  &__content {
+    flex: 1;
+    border-top: 1px solid #E1E1E1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 20px 23px 22px 23px;
+}
+
+
+  &__title {
+    margin: 0;
+
+    color: $text-color;
+
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+
+    gap: 20px;
+  }
+
+
+  &__prices {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__old-price {
+    color: #A0A0A0;
+
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 150%;
+
+    font-family: inherit;
+    vertical-align: middle;
+    text-decoration: line-through;
+  }
+
+
+  &__price {
+    color: $text-color;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+
+  &__button {
+    flex: 1;
+    height: 48px;
+    padding: 0 8px;
+
+    border: none;
+
+    background: $accent-color;
+
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 150%;
+
+    cursor: pointer;
+
+    transition: background $transition;
+
+
+    &:hover {
+      background: $hover-color;
+    }
+
+
+    &:active {
+      background: $activate-color;
+    }
+
+
+    &:disabled {
+      background: $disabled-color;
+
+      cursor: not-allowed;
+    }
+  }
+
+    &__sold {
+        margin-top: auto;
+        margin-bottom: 12px;
+
+        color: $text-color;
+
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 150%;
+        vertical-align: middle;
+    }
+}
+</style>
