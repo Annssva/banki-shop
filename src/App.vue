@@ -55,11 +55,9 @@ export default {
         return this.products
       }
 
-      return this.products.filter((product) => {
-        const search = `${product.title} ${product.author}`.toLowerCase()
-
-        return search.includes(query)
-      })
+      return this.products.filter(product =>
+          product.title.toLowerCase().includes(query)
+      )
     }
   },
 
