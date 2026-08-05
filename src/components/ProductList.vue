@@ -49,7 +49,7 @@ export default {
 
   &__list {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 
     gap: 32px;
 

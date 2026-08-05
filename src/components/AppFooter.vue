@@ -71,10 +71,11 @@ export default {
   background: #ECEAEA;
 
   &__container {
-    max-width: 1310px;
+    max-width: 1350px;
     margin: 0 auto;
     height: 100%;
-    padding-left: 16px;
+    padding-left: 36px;
+    padding-right: 20px;
 
     display: flex;
     align-items: center;
@@ -139,7 +140,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1134px) {
   .footer {
     height: auto;
 
@@ -152,6 +153,7 @@ export default {
     }
 
     &__nav {
+      justify-content: left;
       gap: 24px;
     }
 
@@ -166,10 +168,6 @@ export default {
     &__container {
       flex-direction: column;
       align-items: flex-start;
-    }
-
-    &__nav {
-      flex-wrap: wrap;
     }
   }
 }

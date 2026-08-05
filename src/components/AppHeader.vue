@@ -196,19 +196,21 @@ export default {
   }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 900px) {
   .header {
     height: max-content;
 
     &__container {
       flex-wrap: wrap;
       align-items: stretch;
+      padding-top: 16px;
 
       gap: 20px;
     }
 
     &__nav {
       overflow-x: auto;
+      justify-content: left;
 
       gap: 24px;
     }
